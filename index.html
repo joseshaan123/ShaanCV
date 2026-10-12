@@ -831,13 +831,16 @@
     }
     .file-name { display: none; }
 
+    .stage.is-expanded,
+    .stage:has(.folder.is-hot) { z-index: 85; }
     .sheet-wrap {
       position: fixed;
-      z-index: 35;
+      z-index: 85;
       inset: 0;
       width: 100%;
       height: 100%;
       margin: 0;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -864,8 +867,10 @@
     }
     .sheet {
       position: relative;
-      width: min(1040px, calc(100% - 48px));
-      min-height: min(640px, 78vh);
+      width: min(1040px, calc(100vw - 48px));
+      height: auto;
+      max-height: calc(100dvh - 108px);
+      min-height: min(420px, calc(100dvh - 108px));
       border-radius: 36px;
       display: flex;
       flex-direction: column;
@@ -887,7 +892,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-height: min(520px, 62vh);
+      max-height: min(460px, calc(100dvh - 280px));
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -918,6 +923,92 @@
       line-height: 1.35;
     }
     .sheet-wrap .lift svg { transform: rotate(180deg); }
+
+    .detail-pop {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .detail-pop[hidden] { display: none; }
+    .detail-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .detail-card {
+      position: relative;
+      z-index: 1;
+      width: min(520px, 92vw);
+      display: grid;
+      grid-template-columns: 168px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border-radius: 28px;
+    }
+    .detail-logo {
+      height: 168px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .detail-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      
+    }
+    .detail-kicker {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: white;
+    }
+    .detail-copy h3 {
+      margin-top: 6px;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      padding-right: 28px;
+    }
+    .detail-about {
+      margin-top: 10px;
+      color: white;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .detail-link {
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .detail-link:hover { background: #f5f5f5; color: #111; }
+    .detail-link.is-wait { opacity: 0.5; pointer-events: none; }
+    .detail-x {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+    }
 
     .motion {
       --drift: 0px;
@@ -978,6 +1069,25 @@
       .exp-block, .exp-row { grid-template-columns: 1fr; }
       .exp-role p { max-width: none; }
       .exp-go { justify-self: start; }
+      .sheet-wrap,
+      .detail-pop {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sheet {
+        width: min(560px, calc(100vw - 28px));
+        height: auto;
+        max-height: calc(100dvh - 120px);
+        min-height: 0;
+        padding: 28px 16px 20px;
+      }
+      .sheet-grid { max-height: min(320px, calc(100dvh - 280px)); }
+      .detail-card { grid-template-columns: 1fr; width: min(420px, calc(100vw - 32px)); }
       .edu-head p { text-align: left; margin-top: 16px; }
       .mosaic { margin-top: 36px; grid-template-rows: 240px 160px; }
       .signature { font-size: 120px; top: 42%; }
@@ -1017,12 +1127,7 @@
       .stage.is-expanded .folder-slot { padding-top: 0; }
       .stage.is-expanded .folder-slot:not(:has(.folder.is-current)) { display: none; }
       .folder { width: min(220px, 100%); min-height: 160px; margin-inline: auto; }
-      .sheet {
-        width: min(560px, calc(100% - 28px));
-        min-height: min(520px, 72vh);
-        padding: 32px 18px 24px;
-      }
-      .sheet-grid { max-height: min(420px, 52vh); }
+      .detail-logo { height: 140px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .motion, .hero-piece { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -1033,7 +1138,7 @@
       html { scroll-behavior: auto; }
     }
     @media print {
-      .nav, .scroll-cue, .cv-card, .noise, .menu-btn { display: none !important; }
+      .nav, .scroll-cue, .cv-card, .noise, .menu-btn, .detail-pop { display: none !important; }
       body { background: #fff; color: #111; }
       .edu-card, .skill-card, .slot, .chip, .tag { border-color: #ccc; background: #fff; color: #111; }
     }
@@ -1061,7 +1166,7 @@
 
       <!-- Put your photo on the next line: src="images/portrait.jpg" -->
       <div class="portrait-wrap hero-piece">
-        <img src="images/Heroimg.png" id="heroPhoto" alt="Shaan Jose Baiju" />
+        <img id="heroPhoto" alt="Shaan Jose Baiju" />
         <div class="portrait-empty" id="heroFallback">
           <strong>Portrait</strong>
           <p>Add images/portrait.jpg — a standing photo works best, as in your hero reference.</p>
@@ -1223,52 +1328,64 @@
             <p class="kicker motion from-left">My experience</p>
             <h2 class="motion from-left d1">Client work,<br />then an internship.</h2>
           </div>
-          <p class="motion from-right">Freelance websites for three companies, then a technical analyst internship in Dubai. Each button opens the projects section.</p>
+          <p class="motion from-right">Four client websites, including one second-year group project, then a technical analyst internship in Dubai. Each button opens the projects section.</p>
         </div>
 
         <article class="exp-block">
           <div class="exp-role motion from-left">
             <p class="kicker">Freelance</p>
             <h3>Developer</h3>
-            <p>Websites built for real clients, to the brief they asked for.</p>
+            <p>Websites built for clients, to the brief they asked for.</p>
           </div>
           <div>
             <div class="exp-row motion from-right">
               <div class="logo-slot">
-                <!-- Add src="images/tamayuz.png" when you have the logo. -->
-                <img src="" alt="" />
+                <img src="images/Sandhill logo.png" alt="" />
                 <span>Logo</span>
               </div>
               <div>
-                <p class="exp-kind">Website · Automobile workshop</p>
-                <h3>Al Tamayuz Al Dayem</h3>
-                <p class="detail">A site for an automobile workshop, so the business could be found and show what it does. Built to the client’s requirements.</p>
+                <p class="exp-kind">Website · Tourism, Dubai</p>
+                <h3>Sandhill Tours</h3>
+                <p class="detail">A website for a tourism company in the UAE, focused on Dubai. It puts their tours online so people can find the business. Built to the client’s brief.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
 
             <div class="exp-row motion from-right d2">
               <div class="logo-slot">
-                <img alt="" />
+                <img src="images/Fill le heart.png"  alt="" />
                 <span>Logo</span>
               </div>
               <div>
-                <p class="exp-kind">Website · Tourism, Dubai</p>
-                <h3>Sandhill Tours</h3>
-                <p class="detail">A tourism company in the UAE, focused on Dubai. The site was made to put that offer online and meet the client’s brief.</p>
+                <p class="exp-kind">Website · Bakery and restaurant</p>
+                <h3>Fill Le Hearts</h3>
+                <p class="detail">A front-end site for a bakery, confectionery, and restaurant known for Omani halwa and other Middle Eastern products. A second-year group project, made so the company could use it to promote the business.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
 
             <div class="exp-row motion from-right d3">
               <div class="logo-slot">
-                <img alt="" />
+                <img src="images/tekmaximg logo.png" alt="" />
                 <span>Logo</span>
               </div>
               <div>
                 <p class="exp-kind">Website · Manufacturing</p>
                 <h3>Tek Max Tools</h3>
-                <p class="detail">A manufacturer in Ireland and Kerala. Agricultural equipment, tools, and automotive parts. The site presents that range.</p>
+                <p class="detail">A website for a company in Ireland and Kerala that makes farm equipment, tools, and car parts. The site shows that range so customers know what they sell.</p>
+              </div>
+              <a class="exp-go" href="#projects">Go to projects</a>
+            </div>
+
+            <div class="exp-row motion from-left d4">
+              <div class="logo-slot">
+                <img src="images/Al Tamayuz Al Dayem.png" alt="" />
+                <span>Logo</span>
+              </div>
+              <div>
+                <p class="exp-kind">Website · Automobile workshop</p>
+                <h3>Al Tamayuz Al Dayem</h3>
+                <p class="detail">A website for an automobile workshop. It puts the business online and shows the services they offer. Built to the client’s requirements.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1284,7 +1401,7 @@
           <div>
             <div class="exp-row motion from-up">
               <div class="logo-slot">
-                <img alt="" />
+                <img src="images/techbot logo.jpg" alt="" />
                 <span>Logo</span>
               </div>
               <div>
@@ -1370,6 +1487,20 @@
 
   </main>
 
+  <div class="detail-pop" id="detailPop" hidden>
+    <button class="detail-backdrop" type="button" id="detailBackdrop" aria-label="Close details"></button>
+    <article class="detail-card glass" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <button class="detail-x" type="button" id="detailClose" aria-label="Close">×</button>
+      <div class="detail-logo" id="detailLogo"></div>
+      <div class="detail-copy">
+        <p class="detail-kicker" id="detailKicker"></p>
+        <h3 id="detailTitle"></h3>
+        <p class="detail-about" id="detailAbout"></p>
+        <div class="detail-actions" id="detailActions"></div>
+      </div>
+    </article>
+  </div>
+
   <footer>
     <div class="foot">
       <span>Shaan Jose Baiju</span>
@@ -1405,36 +1536,37 @@
 
     const PLUS = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>`;
 
-    // Your image slots. Drop a file path or URL into image, and the link into url.
-    // Leave image as "" and the slot stays empty until you add one.
-    // Websites → site link. Apps → YouTube link. Blogs → blog link.
+    // image: logo file. url: live site, YouTube, or blog. repo: leave "" unless the GitHub is public and tidy.
+    // about: two short lines. The logo opens this card. The link sits inside the card.
     const PROJECTS = [
       {
         id: "websites",
         label: "Websites",
         items: [
-          { name: "Website 1", image: "", url: "" },
-          { name: "Website 2", image: "", url: "" },
-          { name: "Website 3", image: "", url: "" },
-          { name: "Website 4", image: "", url: "" }
+          { name: "Sandhill Tours", image: "images/Sandhill logo.png", url: "https://www.sandhilltours.com/", repo: "", about: "A website for a tourism company in the UAE, mainly focused on Dubai. It shows their tours and helps people find the business online. Built to what the client asked for." },
+          { name: "Fill Le Hearts", image: "images/Fill le heart.png", url: "https://fillehearts.vercel.app/index.html", repo: "", about: "A website for a bakery, confectionery, and restaurant. They are known for Omani halwa and also sell other products from the Middle East. This was a second-year group project, made as the company’s front-end site so they could promote the business. The client only needed those pages, so the work stayed on what visitors see." },
+          { name: "Tek Max Tools", image: "images/tekmaximg logo.png", url: "https://www.tekmaxtools.com/", repo: "", about: "A website for a company based in Ireland and Kerala. They make agricultural equipment, tools, and parts for cars. The site shows that range in a clear way." },
+          { name: "Al Tamayuz Al Dayem", image: "images/Al Tamayuz Al Dayem.png", url: "https://al-tamayez-al-dayem-psi.vercel.app/index.html", repo: "", about: "A website for an automobile workshop. It puts the business online and explains the services they offer. Built to the client’s requirements." },
+          { name: "Invio", image: "images/invio logo.png", url: "https://invio-invites.vercel.app/", repo: "", about: "A full website, built by a group, for creating invitation links. It covers weddings, birthdays, college events, and funerals. Someone can choose an invitation and pay for it on the site itself. The payment and the other features work. It was not made for an outside company. We built it on our own." },
+          { name: "FavFurniture", image: "images/favfurniture logo.png", url: "https://favfurniture01.vercel.app/", repo: "", about: "A second-year website for a furniture shop. It shows the items and helps promote them. The main focus was making the pages fit phones and larger screens. Visitors can also sign up and log in." },
+          { name: "Make A Change Private Limited", image: "images/Make a change logo.png", url: "https://joseshaan123.github.io/shaanjosegithub.io/", repo: "", about: "A first-year website where people can donate online. It uses HTML, CSS, and JavaScript only. There is no database or other advanced setup, and the layout is not built to resize for every screen." }
         ]
       },
       {
         id: "apps",
         label: "Apps",
         items: [
-          { name: "App 1", image: "", url: "" },
-          { name: "App 2", image: "", url: "" },
-          { name: "App 3", image: "", url: "" }
+          { name: "Personifi - Bible", image: "images/personifi card logo.png", url: "https://youtu.be/28k5-iisaMY?si=ldzROgLfBYSR3iL2", repo: "", about: "An Android app that plans how to finish a book of the Bible. The user chooses the book and how much time they have. The app then gives a simple timetable, showing how many chapters to read each day to reach that goal. A second-year project, built in Android Studio." },
+          { name: "Space Nebulade", image: "images/space logo.png", url: "https://youtu.be/jRILyCSu1mA?si=9Z4iY61kEFqfuUA6", repo: "", about: "An Android app for buying juice. The focus is a clear screen that is easy to use, not a complicated system. A second-year project, built in Android Studio." }
         ]
       },
       {
         id: "blogs",
         label: "Blogs",
         items: [
-          { name: "Blog 1", image: "", url: "" },
-          { name: "Blog 2", image: "", url: "" },
-          { name: "Blog 3", image: "", url: "" }
+          { name: "Complete Developer’s Manual: Building Custom Modules in Odoo", image: "images/odoo 1 blog.png", url: "https://techboterp.com/complete-developers-manual-building-custom-modules-in-odoo/", repo: "", about: "A developer manual on how to build a custom piece of Odoo from start to finish. It explains how the folders are organised, how the setup file works, how the data is defined, how the screens are laid out, and the commands used to run it. Written during the Techbot ERP internship and published on the company site." },
+          { name: "Odoo Developer Guide: Data Security and Access Controls", image: "images/odoo security.jpeg", url: "https://techboterp.com/odoo-developer-guide-data-security-access-controls-in-odoo/", repo: "", about: "A guide to who can see and change data in Odoo. It covers user groups, permission lists, rules that limit individual records, limits on single fields, and how to write the code so it stays safe. Written during the Techbot ERP internship and published on the company site." },
+          { name: "Beyond Automation: How Odoo’s Hidden AI Capabilities Drive Modern Business Efficiency", image: "images/Beyond Image.jpeg", url: "https://techboterp.com/beyond-automation-how-odoos-hidden-ai-capabilities-drive-modern-business-efficiency/", repo: "", about: "An article on the AI already built into Odoo, and how a business can use it day to day. Examples include reading supplier bills automatically, scoring possible customers, drafting emails, sorting support tickets, and estimating stock. Written during the Techbot ERP internship and published on the company site." }
         ]
       }
     ];
@@ -1447,11 +1579,11 @@
         .replace(/"/g, "\u0026quot;");
     }
 
-    function fileHtml(item) {
+    function fileHtml(item, kind) {
       const safe = escapeHtml(item.name);
       const src = escapeHtml(item.image);
       const img = src ? `<img src="${src}" alt="">` : "";
-      return `<a class="file" href="${escapeHtml(item.url) || "#"}" data-url="${escapeHtml(item.url)}" aria-label="${safe}"><span class="file-art">${img}<span class="file-slot">${PLUS}<b>${safe}</b></span></span><span class="file-name">${safe}</span></a>`;
+      return `<a class="file" href="#" data-kind="${kind}" data-name="${safe}" aria-label="${safe}"><span class="file-art">${img}<span class="file-slot">${PLUS}<b>${safe}</b></span></span><span class="file-name">${safe}</span></a>`;
     }
 
     function buildProjects() {
@@ -1461,7 +1593,7 @@
       const chevron = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 14l6-6 6 6"/></svg>`;
       const icon = `<svg class="folder-svg" viewBox="0 0 140 108" fill="none" aria-hidden="true"><path d="M18 38h30l8-12h24c6 0 11 5 11 11v5h31c8 0 14 6 14 14v36c0 8-6 14-14 14H30c-8 0-14-6-14-14V50c0-7 6-12 14-12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
       stage.innerHTML = PROJECTS.map((group, i) => {
-        const files = group.items.map(fileHtml).join("");
+        const files = group.items.map((item) => fileHtml(item, group.id)).join("");
         return `<div class="folder-slot motion ${dirs[i]}"><div class="folder" data-key="${group.id}"><div class="hover-stack"><button class="lift glass" type="button" aria-label="Expand ${group.label}">${chevron}</button><div class="tray glass"><div class="reel"><div class="reel-track">${files}${files}</div></div></div></div><button class="folder-hit" type="button"><span class="folder-body">${icon}<span class="folder-name">${group.label}</span></span></button></div></div>`;
       }).join("") + `<div class="sheet-wrap" id="projectSheet"><button class="lift glass" type="button" id="sheetClose" aria-label="Close folder">${chevron}</button><div class="sheet glass"><p class="sheet-title" id="sheetTitle"></p><div class="sheet-grid" id="sheetGrid"></div></div></div>`;
 
@@ -1470,6 +1602,32 @@
       let expanded = null;
       let shown = null;
       const folders = [...stage.querySelectorAll(".folder")];
+      const kindLabel = { websites: "Website", apps: "App", blogs: "Blog" };
+      const linkLabel = { websites: "Visit website", apps: "Watch on YouTube", blogs: "Visit website" };
+
+      function closeDetail() {
+        const pop = document.getElementById("detailPop");
+        if (pop) pop.hidden = true;
+      }
+
+      function openDetail(kind, name) {
+        const group = PROJECTS.find((item) => item.id === kind);
+        const item = group && group.items.find((entry) => entry.name === name);
+        if (!item) return;
+        document.getElementById("detailKicker").textContent = kindLabel[kind] || "Project";
+        document.getElementById("detailTitle").textContent = item.name;
+        document.getElementById("detailAbout").textContent = item.about || "";
+        const logo = document.getElementById("detailLogo");
+        logo.innerHTML = item.image
+          ? `<img src="${escapeHtml(item.image)}" alt="">`
+          : `<span class="file-slot">${PLUS}<b>${escapeHtml(item.name)}</b></span>`;
+        const actions = [];
+        if (item.url) actions.push(`<a class="detail-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${linkLabel[kind] || "Open link"}</a>`);
+        else actions.push(`<span class="detail-link is-wait">${linkLabel[kind] || "Open link"}</span>`);
+        if (item.repo) actions.push(`<a class="detail-link" href="${escapeHtml(item.repo)}" target="_blank" rel="noopener">GitHub</a>`);
+        document.getElementById("detailActions").innerHTML = actions.join("");
+        document.getElementById("detailPop").hidden = false;
+      }
 
       function bindFiles(root) {
         root.querySelectorAll(".file-art img").forEach((img) => {
@@ -1479,10 +1637,9 @@
           if (link.dataset.bound) return;
           link.dataset.bound = "1";
           link.addEventListener("click", (event) => {
-            const url = link.dataset.url;
             event.preventDefault();
             event.stopPropagation();
-            if (url) window.open(url, "_blank", "noopener");
+            openDetail(link.dataset.kind, link.dataset.name);
           });
         });
       }
@@ -1500,7 +1657,7 @@
           const group = PROJECTS.find((item) => item.id === expanded);
           document.getElementById("sheetTitle").textContent = group.label;
           const grid = document.getElementById("sheetGrid");
-          grid.innerHTML = group.items.map(fileHtml).join("");
+          grid.innerHTML = group.items.map((item) => fileHtml(item, group.id)).join("");
           bindFiles(grid);
         }
         if (!expanded) shown = null;
@@ -1545,6 +1702,11 @@
         event.stopPropagation();
         expanded = null;
         apply();
+      });
+      document.getElementById("detailClose").addEventListener("click", closeDetail);
+      document.getElementById("detailBackdrop").addEventListener("click", closeDetail);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeDetail();
       });
       bindFiles(stage);
     }
