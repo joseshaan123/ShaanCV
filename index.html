@@ -1231,14 +1231,14 @@
         <small>Click to go down</small>
       </a>
 
-      <button class="cv-card hero-piece" type="button" id="downloadCv" aria-label="Download CV">
+      <a class="cv-card hero-piece" id="downloadCv" href="Shaan-Jose-Baiju-CV.pdf" download="Shaan-Jose-Baiju-CV.pdf" aria-label="Download CV">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.4">
           <path d="M7 3.5h7l5 5V20a1.5 1.5 0 0 1-1.5 1.5h-10.5A1.5 1.5 0 0 1 5.5 20V5A1.5 1.5 0 0 1 7 3.5z" />
           <path d="M14 3.5V9h5.5" />
           <path d="M12 11.5v6M9.5 15.2 12 17.7l2.5-2.5" />
         </svg>
         <span>Download<br />CV</span>
-      </button>
+      </a>
     </section>
 
     <section id="who">
@@ -1590,22 +1590,22 @@
         <!-- Replace the link text and set href="mailto:you@email.com" -->
         <li>
           <span>Email</span>
-          <a href="">shaanjoe123@gmail.com</a>
+          <a href="mailto:">Add your email</a>
         </li>
         <!-- Replace the link text and set href="https://www.linkedin.com/in/your-name" -->
         <li>
           <span>LinkedIn</span>
-          <a href="https://www.linkedin.com/in/shaan-jose-77b7b3331/">Shaan Jose Baiju-Linkedin</a>
+          <a href="https://www.linkedin.com/">Add your profile</a>
         </li>
         <!-- Replace the link text and set href="tel:+971500000000" -->
         <li>
           <span>Phone</span>
-          <a href="tel:">+971 50 844 1363</a>
+          <a href="tel:">Add your number</a>
         </li>
         <!-- Replace the text. This one is not a link. -->
         <li>
           <span>City</span>
-          <b> Butina, Sharjah , UAE</b>
+          <b>Add your city</b>
         </li>
       </ul>
     </div>
@@ -1889,7 +1889,6 @@
     };
     document.addEventListener("scroll", onScroll, { passive: true });
 
-    document.getElementById("downloadCv").addEventListener("click", () => window.print());
     EventTarget.prototype.addEventListener = addListener;
   })();
   </script>
