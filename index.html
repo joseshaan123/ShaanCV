@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaan Jose Baiju — Portfolio</title>
-  <meta name="description" content="Portfolio of Shaan Jose Baiju, BSc (Hons) Creative Computing graduate from Bath Spa University, RAK Campus." />
+  <meta name="description" content="Portfolio of Shaan Jose Baiju, BSc (Hons) Creative Computing graduate and MSc (Hons) Cyber Security student at Bath Spa University, RAK Campus." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -103,22 +103,24 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 42%;
+      top: 18%;
       width: 100%;
       text-align: center;
       font-family: "Great Vibes", cursive;
       font-size: clamp(120px, 18vw, 280px);
-      line-height: 0.8;
+      line-height: 1.45;
       color: var(--script);
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
       letter-spacing: -0.03em;
-      overflow: hidden;
+      overflow: visible;
+      z-index: 1;
     }
     .signature span {
       display: inline-block;
       transform: rotate(-6deg);
+      padding: 0.28em 0.12em 0.08em;
     }
     .portrait-wrap {
       position: relative;
@@ -339,7 +341,7 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       margin-top: 72px;
       padding-top: 28px;
@@ -465,7 +467,7 @@
     #skills { padding: 20px 0 110px; }
     .skill-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
     .skill-card {
@@ -600,19 +602,62 @@
     }
     .exp-go:hover { background: #f5f5f5; color: #111; }
 
-    footer {
+    body .folio > footer {
       border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
+      padding: 96px 80px 80px;
     }
-    .foot {
-      width: min(1180px, calc(100% - 64px));
+    body .folio .foot {
+      width: min(1100px, 100%);
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      color: var(--dim);
-      font-size: 13px;
+      display: grid;
+      grid-template-columns: minmax(220px, 0.8fr) 1.2fr;
+      align-items: end;
+      gap: 48px 64px;
+      padding: 28px 32px;
     }
+    .folio .mark {
+      display: block;
+      color: var(--text);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+    .folio .foot-note {
+      margin-top: 14px;
+      max-width: 36ch;
+      color: var(--dim);
+      font-size: 14px;
+      font-weight: 300;
+    }
+    .folio .foot-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 40px;
+    }
+    .folio .foot-list li {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .folio .foot-list span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .folio .foot-list a,
+    .folio .foot-list b {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text);
+    }
+    .folio .foot-list a:hover { color: #fff; }
 
     /* ---------- PROJECTS ---------- */
     #projects {
@@ -1090,14 +1135,18 @@
       .detail-card { grid-template-columns: 1fr; width: min(420px, calc(100vw - 32px)); }
       .edu-head p { text-align: left; margin-top: 16px; }
       .mosaic { margin-top: 36px; grid-template-rows: 240px 160px; }
-      .signature { font-size: 120px; top: 42%; }
+      .signature { font-size: 108px; top: 20%; }
       .scroll-cue { left: 12px; top: 50%; bottom: auto; }
       .cv-card { right: 12px; top: 50%; bottom: auto; width: 92px; height: 104px; }
       .stats { grid-template-columns: 1fr; }
       .timeline::before { left: 7px; }
       .edu-item { grid-template-columns: 16px 1fr; }
       .edu-when { display: none; }
-      .wrap, .foot { width: min(1180px, calc(100% - 36px)); }
+      .wrap { width: min(1180px, calc(100% - 36px)); }
+      body .folio > footer { padding: 72px 36px 56px; }
+      body .folio .foot { width: 100%; padding: 20px 8px; }
+      .folio .foot,
+      .folio .foot-list { grid-template-columns: 1fr; }
       #projects {
         min-height: 100vh;
         align-items: center;
@@ -1199,18 +1248,19 @@
           <div>
             <h1 class="statement motion from-left d1">I build things that have to <em>look right</em> and work right.</h1>
             <p class="lede motion from-up d2">
-              Shaan Jose Baiju is a recent graduate of Bath Spa University, RAK Campus, with a BSc (Hons) in Creative Computing. The work sits between interface and engineering — pages, product visuals, and Android apps.
+              Shaan Jose Baiju graduated from Bath Spa University, RAK Campus, with a BSc (Hons) in Creative Computing, and is now taking an MSc (Hons) in Cyber Security there. It is a one-year course at the same university. The work so far sits between interface and engineering — pages, the backend behind them, and Android apps.
             </p>
             <p class="bio motion from-up d2">
-              On the web, the toolkit is HTML, CSS, and JavaScript. Visual systems are shaped in Figma and Canva. Mobile work is built in Android Studio with Kotlin and XML. The aim is simple: a clear layout, a calm interaction, and code that holds up.
+              On the web, the toolkit is HTML, CSS, and JavaScript. Visual systems are shaped in Figma and Canva. Mobile work is built in Android Studio with Kotlin and XML. On Invio, the part he built was the working side: online payment, sign up, log in, and the account page for details and settings.
             </p>
             <p class="bio motion from-up d3">
-              Schooling ran through Sharjah and the wider UAE — from early years to higher secondary — before three years of creative computing. Now looking for junior roles where design and development share the same brief.
+              The MSc is one year and still in progress, not a finished specialism. He is looking for junior roles and internships in cyber security, backend, front-end, and design, so the study and the Invio work turn into experience.
             </p>
             <div class="chips">
               <span class="chip motion from-down d1">HTML</span>
               <span class="chip motion from-down d1">CSS</span>
               <span class="chip motion from-down d2">JavaScript</span>
+              <span class="chip motion from-down d2">Backend</span>
               <span class="chip motion from-down d2">Figma</span>
               <span class="chip motion from-down d3">Canva</span>
               <span class="chip motion from-down d3">Kotlin</span>
@@ -1252,6 +1302,7 @@
 
         <div class="stats">
           <div class="stat motion from-up"><b>BSc (Hons)</b><span>Creative Computing · Bath Spa, RAK</span></div>
+          <div class="stat motion from-up d1"><b>MSc (Hons)</b><span>Cyber Security · 1 year, same campus</span></div>
           <div class="stat motion from-up d2"><b>Web + mobile</b><span>HTML, CSS, JS · Kotlin, XML</span></div>
           <div class="stat motion zoom d3"><b>Design tools</b><span>Figma and Canva</span></div>
         </div>
@@ -1265,18 +1316,34 @@
             <p class="kicker motion from-left">My education</p>
             <h2 class="motion from-left d1">The path<br />so far.</h2>
           </div>
-          <p class="motion from-right d2">From early school in Sharjah to a UK honours degree in Ras Al Khaimah. Years can be dropped into the labels whenever you want them on the page.</p>
+          <p class="motion from-right d2">An MSc (Hons) in Cyber Security is underway at Bath Spa University, RAK Campus. It is a one-year course at the same university as the degree. Before that, the BSc (Hons) and higher secondary.</p>
         </div>
 
         <div class="timeline">
           <article class="edu-item">
-            <div class="edu-when motion from-down">3 years<br />Degree</div>
+            <div class="edu-when motion from-down">1 year<br />MSc</div>
             <div class="dot-col"><span class="dot"></span></div>
             <div class="edu-card feature motion from-right">
-              <p class="level">Higher education · Recently graduated</p>
+              <p class="level">Postgraduate · In progress</p>
+              <h3>MSc (Hons) Cyber Security</h3>
+              <p class="place">Bath Spa University · RAK Campus, Ras Al Khaimah</p>
+              <p class="detail">A one-year honours master’s at the same university as the creative computing degree. It is in progress. The aim is internships and junior roles where the study becomes real experience.</p>
+              <div class="tags">
+                <span class="tag">In progress</span>
+                <span class="tag">1 year</span>
+                <span class="tag">Same campus</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="edu-item">
+            <div class="edu-when motion from-down">3 years<br />Degree</div>
+            <div class="dot-col"><span class="dot"></span></div>
+            <div class="edu-card motion from-left">
+              <p class="level">Higher education · Graduated</p>
               <h3>BSc (Hons) Creative Computing</h3>
               <p class="place">Bath Spa University · RAK Campus, Ras Al Khaimah</p>
-              <p class="detail">A three-year honours degree in creative computing — digital design meeting software. Course work sits beside the tools now used day to day: web front-end, interface design, and Android application development.</p>
+              <p class="detail">A three-year honours degree in creative computing — digital design meeting software. Course work sits beside the tools used on the projects: web front-end, interface design, and Android application development.</p>
               <div class="tags">
                 <span class="tag">Full-time</span>
                 <span class="tag">3 years</span>
@@ -1288,33 +1355,11 @@
           <article class="edu-item">
             <div class="edu-when motion from-down">Grade<br />11 – 12</div>
             <div class="dot-col"><span class="dot"></span></div>
-            <div class="edu-card motion from-left">
+            <div class="edu-card motion from-right">
               <p class="level">Higher secondary</p>
               <h3>Gulf Model School</h3>
               <p class="place">Grade 11 to Grade 12</p>
-              <p class="detail">Completed higher secondary here, before moving into the creative computing degree.</p>
-            </div>
-          </article>
-
-          <article class="edu-item">
-            <div class="edu-when motion from-down">Grade<br />3 – 10</div>
-            <div class="dot-col"><span class="dot"></span></div>
-            <div class="edu-card motion from-right">
-              <p class="level">Primary to secondary</p>
-              <h3>Emirates National School</h3>
-              <p class="place">Grade 3 to Grade 10</p>
-              <p class="detail">Eight years of schooling, from the middle of primary through to the end of secondary.</p>
-            </div>
-          </article>
-
-          <article class="edu-item">
-            <div class="edu-when motion from-down">KG1 –<br />Grade 2</div>
-            <div class="dot-col"><span class="dot"></span></div>
-            <div class="edu-card motion from-left">
-              <p class="level">Early years</p>
-              <h3>Sharjah Indian School</h3>
-              <p class="place">KG1 to Grade 2</p>
-              <p class="detail">Where school started — kindergarten through the second grade.</p>
+              <p class="detail">Completed higher secondary here, before the creative computing degree.</p>
             </div>
           </article>
         </div>
@@ -1328,14 +1373,14 @@
             <p class="kicker motion from-left">My experience</p>
             <h2 class="motion from-left d1">Client work,<br />then an internship.</h2>
           </div>
-          <p class="motion from-right">Four client websites, including one second-year group project, then a technical analyst internship in Dubai. Each button opens the projects section.</p>
+          <p class="motion from-right">Four client websites, a group project where the backend was his, then a technical analyst internship in Dubai. Each button opens the projects section.</p>
         </div>
 
         <article class="exp-block">
           <div class="exp-role motion from-left">
             <p class="kicker">Freelance</p>
             <h3>Developer</h3>
-            <p>Websites built for clients, to the brief they asked for.</p>
+            <p>Clients still use these sites, and they were happy with the work.</p>
           </div>
           <div>
             <div class="exp-row motion from-right">
@@ -1346,7 +1391,7 @@
               <div>
                 <p class="exp-kind">Website · Tourism, Dubai</p>
                 <h3>Sandhill Tours</h3>
-                <p class="detail">A website for a tourism company in the UAE, focused on Dubai. It puts their tours online so people can find the business. Built to the client’s brief.</p>
+                <p class="detail">A website for a tourism company in the UAE, focused on Dubai. It puts their tours online so people can find the business. The client still uses the site and was happy with it.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1359,7 +1404,7 @@
               <div>
                 <p class="exp-kind">Website · Bakery and restaurant</p>
                 <h3>Fill Le Hearts</h3>
-                <p class="detail">A front-end site for a bakery, confectionery, and restaurant known for Omani halwa and other Middle Eastern products. A second-year group project, made so the company could use it to promote the business.</p>
+                <p class="detail">A front-end site for a bakery, confectionery, and restaurant known for Omani halwa and other Middle Eastern products. A second-year group project. The company uses the site, and they were happy with the result.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1372,7 +1417,7 @@
               <div>
                 <p class="exp-kind">Website · Manufacturing</p>
                 <h3>Tek Max Tools</h3>
-                <p class="detail">A website for a company in Ireland and Kerala that makes farm equipment, tools, and car parts. The site shows that range so customers know what they sell.</p>
+                <p class="detail">A website for a company in Ireland and Kerala that makes farm equipment, tools, and car parts. The site shows that range so customers know what they sell. It is still in use, and the client was pleased with the work.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1385,7 +1430,29 @@
               <div>
                 <p class="exp-kind">Website · Automobile workshop</p>
                 <h3>Al Tamayuz Al Dayem</h3>
-                <p class="detail">A website for an automobile workshop. It puts the business online and shows the services they offer. Built to the client’s requirements.</p>
+                <p class="detail">A website for an automobile workshop. It puts the business online and shows the services they offer. The workshop still uses it, and the client was happy with the result.</p>
+              </div>
+              <a class="exp-go" href="#projects">Go to projects</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-block">
+          <div class="exp-role motion from-left">
+            <p class="kicker">Project</p>
+            <h3>Backend</h3>
+            <p>Group build. The account and payment side was his.</p>
+          </div>
+          <div>
+            <div class="exp-row motion from-up">
+              <div class="logo-slot">
+                <img src="images/invio logo.png" alt="" />
+                <span>Logo</span>
+              </div>
+              <div>
+                <p class="exp-kind">Website · Invitations</p>
+                <h3>Invio</h3>
+                <p class="detail">A group site for invitation links, including weddings, birthdays, college events, and funerals. His part was the backend: online payment, sign up, log in, and the account page for personal details and settings.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1407,7 +1474,7 @@
               <div>
                 <p class="exp-kind">Technical analyst · Dubai</p>
                 <h3>Techbot ERP</h3>
-                <p class="detail">Techbot ERP is an Odoo implementation partner based in Dubai Silicon Oasis. It sets up and customises Odoo for businesses in the UAE and the region. As a technical analyst, the work was research on Odoo, then publishing that writing as blogs on the company WordPress site.</p>
+                <p class="detail">Techbot ERP is an Odoo implementation partner based in Dubai Silicon Oasis. It sets up and customises Odoo for businesses in the UAE and the region. As a technical analyst, the work was research on Odoo, then publishing that writing as blogs on the company site. In Google Search Console those posts show a strong click-through rate, an average position near the top, a solid number of clicks, and real search queries.</p>
               </div>
               <a class="exp-go" href="#projects">Go to projects</a>
             </div>
@@ -1421,9 +1488,9 @@
         <div class="edu-head">
           <div>
             <p class="kicker motion from-left">My skills</p>
-            <h2 class="motion from-left d1">Design, web,<br />and Android.</h2>
+            <h2 class="motion from-left d1">Web, backend,<br />and Android.</h2>
           </div>
-          <p class="motion from-right">Taken from the BSc (Hons) Creative Computing course at Bath Spa University, RAK Campus, plus the tools used to build the work.</p>
+          <p class="motion from-right">Taken from the BSc (Hons) Creative Computing course at Bath Spa University, RAK Campus, plus the tools used to build the work. Backend comes from Invio. The MSc (Hons) Cyber Security, at the same campus, is a one-year course in progress, not a finished skill set.</p>
         </div>
 
         <div class="skill-grid">
@@ -1440,7 +1507,19 @@
           </article>
 
           <article class="skill-card motion from-up d2">
-            <p class="index">02 · Design</p>
+            <p class="index">02 · Server</p>
+            <h3>Backend</h3>
+            <p>The part behind the page: accounts and payments. On Invio, a group invitation site, the contribution was online payment, sign up, log in, and the account area for personal details and settings.</p>
+            <div class="skill-tools">
+              <span class="tag">Payments</span>
+              <span class="tag">Sign up</span>
+              <span class="tag">Log in</span>
+              <span class="tag">Account settings</span>
+            </div>
+          </article>
+
+          <article class="skill-card motion from-right d3">
+            <p class="index">03 · Design</p>
             <h3>Interface</h3>
             <p>Digital visual design and ideation and experience design. Interfaces, simple visual systems, and prototypes before the build starts.</p>
             <div class="skill-tools">
@@ -1452,7 +1531,7 @@
           </article>
 
           <article class="skill-card motion from-right d3">
-            <p class="index">03 · Mobile</p>
+            <p class="index">04 · Mobile</p>
             <h3>Android</h3>
             <p>Smartphone app design in the second year, made in Android Studio. Screens structured in XML, logic written in Kotlin.</p>
             <div class="skill-tools">
@@ -1464,7 +1543,7 @@
         </div>
 
         <div class="skill-note">
-          <p class="motion from-up">The course also trains the way the work gets done: creative coding, agile production, APIs, digital storytelling, and presenting a pitch. Final year adds a research project and a creative incubator, with introductions to machine learning, cyber security, and physical computing. Those are part of the degree, not specialist claims.</p>
+          <p class="motion from-up">The BSc also trains how the work gets done: creative coding, agile production, APIs, digital storytelling, and presenting a pitch. Final year adds a research project and a creative incubator, with introductions to machine learning, cyber security, and physical computing. Those introductions are part of the degree, not specialist claims. The specialist study is the one-year MSc (Hons) Cyber Security, in progress at the same Bath Spa campus.</p>
           <div class="chips">
             <span class="chip motion from-down d1">Creative coding</span>
             <span class="chip motion from-down d1">Experience design</span>
@@ -1503,8 +1582,32 @@
 
   <footer>
     <div class="foot">
-      <span>Shaan Jose Baiju</span>
-      <span>Portfolio · Creative Computing</span>
+      <div class="mark-lock">
+        <a class="mark" href="#top">Shaan Jose Baiju</a>
+        <p class="foot-note">MSc (Hons) Cyber Security, one year, Bath Spa University, RAK. Open to junior roles and internships in cyber security, backend, front-end, and design.</p>
+      </div>
+      <ul class="foot-list">
+        <!-- Replace the link text and set href="mailto:you@email.com" -->
+        <li>
+          <span>Email</span>
+          <a href="">shaanjoe123@gmail.com</a>
+        </li>
+        <!-- Replace the link text and set href="https://www.linkedin.com/in/your-name" -->
+        <li>
+          <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/shaan-jose-77b7b3331/">Shaan Jose Baiju-Linkedin</a>
+        </li>
+        <!-- Replace the link text and set href="tel:+971500000000" -->
+        <li>
+          <span>Phone</span>
+          <a href="tel:">+971 50 844 1363</a>
+        </li>
+        <!-- Replace the text. This one is not a link. -->
+        <li>
+          <span>City</span>
+          <b> Butina, Sharjah , UAE</b>
+        </li>
+      </ul>
     </div>
   </footer>
   </div>
@@ -1543,11 +1646,11 @@
         id: "websites",
         label: "Websites",
         items: [
-          { name: "Sandhill Tours", image: "images/Sandhill logo.png", url: "https://www.sandhilltours.com/", repo: "", about: "A website for a tourism company in the UAE, mainly focused on Dubai. It shows their tours and helps people find the business online. Built to what the client asked for." },
-          { name: "Fill Le Hearts", image: "images/Fill le heart.png", url: "https://fillehearts.vercel.app/index.html", repo: "", about: "A website for a bakery, confectionery, and restaurant. They are known for Omani halwa and also sell other products from the Middle East. This was a second-year group project, made as the company’s front-end site so they could promote the business. The client only needed those pages, so the work stayed on what visitors see." },
-          { name: "Tek Max Tools", image: "images/tekmaximg logo.png", url: "https://www.tekmaxtools.com/", repo: "", about: "A website for a company based in Ireland and Kerala. They make agricultural equipment, tools, and parts for cars. The site shows that range in a clear way." },
-          { name: "Al Tamayuz Al Dayem", image: "images/Al Tamayuz Al Dayem.png", url: "https://al-tamayez-al-dayem-psi.vercel.app/index.html", repo: "", about: "A website for an automobile workshop. It puts the business online and explains the services they offer. Built to the client’s requirements." },
-          { name: "Invio", image: "images/invio logo.png", url: "https://invio-invites.vercel.app/", repo: "", about: "A full website, built by a group, for creating invitation links. It covers weddings, birthdays, college events, and funerals. Someone can choose an invitation and pay for it on the site itself. The payment and the other features work. It was not made for an outside company. We built it on our own." },
+          { name: "Invio", image: "images/invio logo.png", url: "https://invio-invites.vercel.app/", repo: "", about: "A group project for sending invitation links for weddings, birthdays, college events, and funerals. People can pay for an invitation on the site. My part was the backend: online payment, sign up, log in, and the account page for personal details and settings. Those features work." },
+          { name: "Sandhill Tours", image: "images/Sandhill logo.png", url: "https://www.sandhilltours.com/", repo: "", about: "A website for a tourism company in the UAE, mainly focused on Dubai. It shows their tours and helps people find the business online. The client still uses the site and was happy with it." },
+          { name: "Fill Le Hearts", image: "images/Fill le heart.png", url: "https://fillehearts.vercel.app/index.html", repo: "", about: "A website for a bakery, confectionery, and restaurant known for Omani halwa and other Middle Eastern products. A second-year group project, built as the front-end the client asked for. The company uses the site and was happy with the result." },
+          { name: "Tek Max Tools", image: "images/tekmaximg logo.png", url: "https://www.tekmaxtools.com/", repo: "", about: "A website for a company in Ireland and Kerala that makes agricultural equipment, tools, and parts for cars. The site shows that range clearly. The client still uses it and was pleased with the work." },
+          { name: "Al Tamayuz Al Dayem", image: "images/Al Tamayuz Al Dayem.png", url: "https://al-tamayez-al-dayem-psi.vercel.app/index.html", repo: "", about: "A website for an automobile workshop. It puts the business online and explains the services they offer. The workshop still uses the site, and the client was happy with the result." },
           { name: "FavFurniture", image: "images/favfurniture logo.png", url: "https://favfurniture01.vercel.app/", repo: "", about: "A second-year website for a furniture shop. It shows the items and helps promote them. The main focus was making the pages fit phones and larger screens. Visitors can also sign up and log in." },
           { name: "Make A Change Private Limited", image: "images/Make a change logo.png", url: "https://joseshaan123.github.io/shaanjosegithub.io/", repo: "", about: "A first-year website where people can donate online. It uses HTML, CSS, and JavaScript only. There is no database or other advanced setup, and the layout is not built to resize for every screen." }
         ]
@@ -1564,9 +1667,9 @@
         id: "blogs",
         label: "Blogs",
         items: [
-          { name: "Complete Developer’s Manual: Building Custom Modules in Odoo", image: "images/odoo 1 blog.png", url: "https://techboterp.com/complete-developers-manual-building-custom-modules-in-odoo/", repo: "", about: "A developer manual on how to build a custom piece of Odoo from start to finish. It explains how the folders are organised, how the setup file works, how the data is defined, how the screens are laid out, and the commands used to run it. Written during the Techbot ERP internship and published on the company site." },
-          { name: "Odoo Developer Guide: Data Security and Access Controls", image: "images/odoo security.jpeg", url: "https://techboterp.com/odoo-developer-guide-data-security-access-controls-in-odoo/", repo: "", about: "A guide to who can see and change data in Odoo. It covers user groups, permission lists, rules that limit individual records, limits on single fields, and how to write the code so it stays safe. Written during the Techbot ERP internship and published on the company site." },
-          { name: "Beyond Automation: How Odoo’s Hidden AI Capabilities Drive Modern Business Efficiency", image: "images/Beyond Image.jpeg", url: "https://techboterp.com/beyond-automation-how-odoos-hidden-ai-capabilities-drive-modern-business-efficiency/", repo: "", about: "An article on the AI already built into Odoo, and how a business can use it day to day. Examples include reading supplier bills automatically, scoring possible customers, drafting emails, sorting support tickets, and estimating stock. Written during the Techbot ERP internship and published on the company site." }
+          { name: "Complete Developer’s Manual: Building Custom Modules in Odoo", image: "images/odoo 1 blog.png", url: "https://techboterp.com/complete-developers-manual-building-custom-modules-in-odoo/", repo: "", about: "A public guide to building a custom piece of Odoo, from the folder structure to the screens and the commands that run it. Written during the Techbot ERP internship. In Google Search Console it has a strong click-through rate, an average position near the top, a solid number of clicks, and real search queries." },
+          { name: "Odoo Developer Guide: Data Security and Access Controls", image: "images/odoo security.jpeg", url: "https://techboterp.com/odoo-developer-guide-data-security-access-controls-in-odoo/", repo: "", about: "A public guide to who can see and change data in Odoo: user groups, permission lists, record rules, and field limits. Written during the Techbot ERP internship. Search Console shows a strong click-through rate, a high average position, steady clicks, and queries people actually type." },
+          { name: "Beyond Automation: How Odoo’s Hidden AI Capabilities Drive Modern Business Efficiency", image: "images/Beyond Image.jpeg", url: "https://techboterp.com/beyond-automation-how-odoos-hidden-ai-capabilities-drive-modern-business-efficiency/", repo: "", about: "A public article on the AI already inside Odoo, including reading supplier bills, scoring leads, drafting emails, sorting tickets, and estimating stock. Written during the Techbot ERP internship. It ranks near the top on average, with a good click-through rate, a healthy number of clicks, and visible search queries." }
         ]
       }
     ];
